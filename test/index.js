@@ -16,7 +16,7 @@ describe('recursive install', function () {
     '/node_modules/a-module'
   ]
 
-  shell.rm('-r', cwd)
+  if (shell.test('-d', cwd)) shell.rm('-r', cwd)
   shell.mkdir(cwd)
 
   installedPaths.concat(notInstalledPaths).forEach(function (p) {
@@ -27,21 +27,29 @@ describe('recursive install', function () {
 
   shell.cd(cwd)
 
-  var result = shell.exec(script, {silent: true})
+  var result = shell.exec(script)
 
   it('exits with code 0', function () {
-    assert(result.code === 0)
+    assert.strictEqual(result.code, 0)
   })
 
   it('installs packages', function () {
     installedPaths.forEach(function (p) {
-      assert(shell.test('-d', path.join(cwd, p, 'node_modules')))
+      var workingDir = path.join(cwd, p)
+      assert(
+        shell.test('-d', workingDir + '/node_modules'),
+        'Failed to install for ' + workingDir + '. Directory Listing: ' + shell.ls(workingDir)
+      )
     })
   })
 
   it('doesn\'t install packages in node_modules', function () {
     notInstalledPaths.forEach(function (p) {
-      assert(!shell.test('-d', path.join(cwd, p, 'node_modules')))
+      var workingDir = path.join(cwd, p)
+      assert(
+        !shell.test('-d', workingDir + '/node_modules'),
+        'Install incorrectly succeeded for ' + workingDir + '. Directory Listing: ' + shell.ls(workingDir)
+      )
     })
   })
 })
