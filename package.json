@@ -24,6 +24,7 @@
     "url": "https://github.com/emgeee/recursive-install/issues"
   },
   "dependencies": {
+    "left-pad": "^1.1.0",
     "shelljs": "^0.7.0"
   },
   "devDependencies": {

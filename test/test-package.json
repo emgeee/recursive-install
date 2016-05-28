@@ -1,5 +1,7 @@
 {
   "name": "sample-app",
   "version": "1.0.0",
-  "dependencies": {}
+  "dependencies": {
+    "left-pad": "^1.1.0"
+  }
 }
