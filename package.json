@@ -1,0 +1,46 @@
+{
+  "name": "recursive-install",
+  "version": "1.0.0",
+  "description": "CLI tool to recursive search child directories and run 'npm install' when a package.json file is found.",
+  "main": "recursive-install.js",
+  "keywords": [
+    "install",
+    "recursive",
+    "npm install"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "bin": {
+    "npm-recursive-install": "./recursive-install.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emgeee/recursive-install"
+  },
+  "author": "Matt Green <mgreen9@gmail.com> (https://greenin.space)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emgeee/recursive-install/issues"
+  },
+  "dependencies": {
+    "shelljs": "^0.7.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.5.3"
+  },
+  "standard": {
+    "ignore": [
+      "public/**",
+      "src/vendor/**"
+    ],
+    "global": [
+      "describe",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach",
+      "it"
+    ]
+  }
+}

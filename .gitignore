@@ -1,0 +1,17 @@
+.DS_Store
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.xcf
+*.db
+.env
+
+build
+node_modules
+npm-debug.log
+index.min.js
+lb-services.js
