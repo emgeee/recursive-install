@@ -1,6 +1,6 @@
 {
   "name": "recursive-install",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "CLI tool to recursive search child directories and run 'npm install' when a package.json file is found.",
   "main": "recursive-install.js",
   "keywords": [
@@ -24,7 +24,8 @@
     "url": "https://github.com/emgeee/recursive-install/issues"
   },
   "dependencies": {
-    "shelljs": "^0.7.0"
+    "shelljs": "^0.7.0",
+    "yargs": "^5.0.0"
   },
   "devDependencies": {
     "mocha": "^2.5.3"

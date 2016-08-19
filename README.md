@@ -11,6 +11,8 @@ Usage
 ---
 `$ recursive-install`
 
+`$ recursive-install --skip-root` - Will not install in `process.cwd()`
+
 License
 ---
 MIT

@@ -2,6 +2,9 @@
 
 var path = require('path')
 var shell = require('shelljs')
+var argv = require('yargs').argv
+
+function noop (x) { return x }
 
 function getPackageJsonLocations (dirname) {
   return shell.find(dirname)
@@ -26,8 +29,18 @@ function npmInstall (dir) {
   }
 }
 
+function filterRoot (dir) {
+  if (dir === process.cwd()) {
+    console.log('Skipping root package.json...')
+    return false
+  } else {
+    return true
+  }
+}
+
 if (require.main === module) {
   var exitCode = getPackageJsonLocations(process.cwd())
+    .filter(argv.skipRoot ? filterRoot : noop)
     .map(npmInstall)
     .reduce(function (code, result) {
       return result.exitCode > code ? result.exitCode : code
