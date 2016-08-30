@@ -49,3 +49,8 @@ if (require.main === module) {
   process.exit(exitCode)
 }
 
+module.exports = {
+  getPackageJsonLocations: getPackageJsonLocations,
+  npmInstall: npmInstall,
+  filterRoot: filterRoot
+};
