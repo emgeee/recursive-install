@@ -30,7 +30,7 @@ function npmInstall (dir) {
 }
 
 function filterRoot (dir) {
-  if (dir === process.cwd()) {
+  if (path.normalize(dir) === path.normalize(process.cwd())) {
     console.log('Skipping root package.json...')
     return false
   } else {
