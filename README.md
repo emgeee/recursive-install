@@ -9,9 +9,9 @@ Install
 
 Usage
 ---
-`$ recursive-install`
+`$ npm-recursive-install`
 
-`$ recursive-install --skip-root` - Will not install in `process.cwd()`
+`$ npm-recursive-install --skip-root` - Will not install in `process.cwd()`
 
 License
 ---
