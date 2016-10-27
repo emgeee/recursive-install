@@ -3,14 +3,14 @@ var argv = require('yargs').argv
 var recursive = require('./recursive');
 var getPackageJsonLocations = recursive.getPackageJsonLocations;
 var filterRoot = recursive.filterRoot;
-var npmInstall = recursive.npmInstall;
+var npmTest = recursive.npmTest;
 
 function noop (x) { return x }
 
 if (require.main === module) {
   var exitCode = getPackageJsonLocations(process.cwd())
     .filter(argv.skipRoot ? filterRoot : noop)
-    .map(npmInstall)
+    .map(npmTest)
     .reduce(function (code, result) {
       return result.exitCode > code ? result.exitCode : code
     }, 0)
