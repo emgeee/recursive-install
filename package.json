@@ -12,7 +12,8 @@
     "test": "./node_modules/.bin/mocha"
   },
   "bin": {
-    "npm-recursive-install": "./recursive-install.js"
+    "npm-recursive-install": "./recursive-install.js",
+    "npm-recursive-test": "./recursive-test.js"
   },
   "repository": {
     "type": "git",
