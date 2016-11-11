@@ -39,7 +39,7 @@ function filterRoot (dir) {
 }
 
 if (require.main === module) {
-  var exitCode = getPackageJsonLocations(process.cwd())
+  var exitCode = getPackageJsonLocations(argv.rootDir ? argv.rootDir : process.cwd())
     .filter(argv.skipRoot ? filterRoot : noop)
     .map(npmInstall)
     .reduce(function (code, result) {
