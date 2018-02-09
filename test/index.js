@@ -188,7 +188,7 @@ describe('recursive install', function () {
   })
 
   describe('test with fail', function () {
-    it('fails to install packages', function () {
+    it('fails to install packages', function (done) {
       cwd = path.join(os.tmpdir(), 'recursive-install'.concat(uuidv4()))
       fs.ensureDirSync(cwd)
       fs.copySync(path.join(__dirname, 'test-package-fail.json'), path.join(cwd, 'package.json'))
@@ -201,6 +201,7 @@ describe('recursive install', function () {
           (err.status === 1),
           'Exist status should be 1, not '+ err.status
         )
+        done()
       }
     })
   })
