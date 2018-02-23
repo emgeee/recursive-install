@@ -13,6 +13,8 @@ Usage
 
 `$ npm-recursive-install --skip-root` - Will not install in `process.cwd()`
 
+`$ npm-recursive-install --production` - Will not install dev dependencies
+
 License
 ---
 MIT
