@@ -12,8 +12,9 @@ Usage
 `$ npm-recursive-install`
 
 `$ npm-recursive-install --skip-root` - Will not install in `process.cwd()`
-
 `$ npm-recursive-install --rootDir=lib` - Will only install from lib directory
+`$ npm-recursive-install --production` - Will not install dev dependencies
+
 
 License
 ---
