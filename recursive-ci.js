@@ -18,16 +18,11 @@ function getPackageJsonLocations (dirname) {
     })
 }
 
-function npmInstall (dir) {
+function npmCi (dir) {
   var exitCode = 0;
   try {
-    if(argv.production) {
-      console.log('Installing ' + dir + '/package.json with --production option')
-      execSync('npm install --production', { cwd: dir})
-    } else {
-      console.log('Installing ' + dir + '/package.json')
-      execSync('npm install', { cwd: dir})
-    }
+    console.log('Installing ' + dir + '/package.json')
+    execSync('npm ci', { cwd: dir})
     console.log('')
   } catch (err) {
     exitCode = err.status
@@ -51,7 +46,7 @@ function filterRoot (dir) {
 if (require.main === module) {
   var exitCode = getPackageJsonLocations(argv.rootDir ? argv.rootDir : process.cwd())
     .filter(argv.skipRoot ? filterRoot : noop)
-    .map(npmInstall)
+    .map(npmCi)
     .reduce(function (code, result) {
       return result.exitCode > code ? result.exitCode : code
     }, 0)

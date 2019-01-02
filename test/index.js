@@ -6,9 +6,9 @@ var os = require('os')
 var execSync = require('child_process').execSync
 
 
-var script = path.join(__dirname, '../recursive-install.js')
+var script = path.join(__dirname, '../recursive-ci.js')
 
-describe('recursive install', function () {
+describe('recursive ci', function () {
   var cwd
   var installedPaths
   var notInstalledPaths
@@ -25,7 +25,7 @@ describe('recursive install', function () {
       '/notInstalledPaths/node_modules/a-module'
     ]
 
-    cwd = path.join(os.tmpdir(), 'recursive-install'.concat(uuidv4()))
+    cwd = path.join(os.tmpdir(), 'recursive-ci'.concat(uuidv4()))
     fs.ensureDirSync(cwd)
 
     installedPaths.concat(notInstalledPaths).forEach(function (p) {
@@ -144,11 +144,11 @@ describe('recursive install', function () {
     })
   })
 
-  describe('test with options --skip-root --production', function () {
+  describe('test with options --skip-root', function () {
     beforeEach(function (done) {
-      this.timeout(60000) // update timeout in case npm install take time
+      this.timeout(60000) // update timeout in case npm ci takes time
       try {
-        execSync(script.concat(' --skip-root --production'), { cwd: cwd }) // Throw an error if exec fail
+        execSync(script.concat(' --skip-root'), { cwd: cwd }) // Throw an error if exec fail
         done()
       } catch (err) {
         done(err)
@@ -168,11 +168,6 @@ describe('recursive install', function () {
           fs.lstatSync(path.join(workingDir, 'node_modules')).isDirectory(),
           'Failed to install for ' + workingDir + '. Directory Listing: ' + fs.readdirSync(workingDir)
         )
-
-        assert(
-          !fs.existsSync(path.join(workingDir, 'node_modules', 'right-pad')),
-          'Should not install dev dependencies for ' + workingDir + '. Directory Listing: ' + fs.readdirSync(workingDir)
-        )
       })
     })
 
@@ -189,7 +184,7 @@ describe('recursive install', function () {
 
   describe('test with fail', function () {
     it('fails to install packages', function (done) {
-      cwd = path.join(os.tmpdir(), 'recursive-install'.concat(uuidv4()))
+      cwd = path.join(os.tmpdir(), 'recursive-ci'.concat(uuidv4()))
       fs.ensureDirSync(cwd)
       fs.copySync(path.join(__dirname, 'test-package-fail.json'), path.join(cwd, 'package.json'))
 

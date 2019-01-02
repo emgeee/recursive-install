@@ -1,0 +1,13 @@
+{
+  "name": "recursive-ci",
+  "version": "1.0.0",
+  "lockfileVersion": 1,
+  "requires": true,
+  "dependencies": {
+    "left-pad": {
+      "version": "xxx",
+      "resolved": "xxx",
+      "integrity": "xxx"
+    }
+  }
+}
