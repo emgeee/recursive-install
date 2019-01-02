@@ -12,6 +12,7 @@ Usage
 `$ npm-recursive-ci`
 
 `$ npm-recursive-ci --skip-root` - Will not install in `process.cwd()`
+
 `$ npm-recursive-ci --rootDir=lib` - Will only install from lib directory
 
 
