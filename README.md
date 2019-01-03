@@ -15,6 +15,8 @@ Usage
 
 `$ npm-recursive-ci --rootDir=lib` - Will only install from lib directory
 
+`$ npm-recursive-ci --production` - Will not install dev dependencies
+
 
 License
 ---
