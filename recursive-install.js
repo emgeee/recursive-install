@@ -5,17 +5,17 @@ require( __dirname + '/lib/tools.js')();
 var execSync = require('child_process').execSync;
 var argv = require('yargs').argv;
 
-function npmCi (dir) {
+function npmInstall (dir) {
   var exitCode = 0;
   try {
     if(argv.production) {
-      console.log('Installing [ci] ' + dir + '/package-lock.json with --only=production option');
-      execSync('npm ci --only=production', { cwd: dir});
+      console.log('Installing ' + dir + '/package.json with --production option');
+      execSync('npm install --production', { cwd: dir});
     } else {
-      console.log('Installing [ci] ' + dir + '/package-lock.json');
-      execSync('npm ci', { cwd: dir});
+      console.log('Installing ' + dir + '/package.json');
+      execSync('npm install', { cwd: dir});
     }
-    console.log('');
+    console.log('')
   } catch (err) {
     exitCode = err.status;
   }
@@ -27,9 +27,9 @@ function npmCi (dir) {
 }
 
 if (require.main === module) {
-  var exitCode = getPackageLockJsonLocations(argv.rootDir ? argv.rootDir : process.cwd())
+  var exitCode = getPackageJsonLocations(argv.rootDir ? argv.rootDir : process.cwd())
     .filter(argv.skipRoot ? filterRoot : noop)
-    .map(npmCi)
+    .map(npmInstall)
     .reduce(function (code, result) {
       return result.exitCode > code ? result.exitCode : code;
     }, 0);

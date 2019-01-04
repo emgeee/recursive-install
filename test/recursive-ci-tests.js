@@ -29,14 +29,14 @@ describe('recursive ci', function () {
       '/notInstalledPaths/node_modules/a-module'
     ];
 
-    cwd = getTempDir(); //path.join(os.tmpdir(), 'recursive-ci'.concat(uuidv4()));
+    cwd = getTempDir();
     fs.ensureDirSync(cwd);
 
     installedPaths.concat(notInstalledPaths).forEach(function (p) {
       var newPath = path.join(cwd, p);
       fs.ensureDirSync(newPath);
-      fs.copySync(path.join(__dirname, 'test-package.json'), path.join(newPath, 'package.json'));
-      fs.copySync(path.join(__dirname, 'test-package-lock.json'), path.join(newPath, 'package-lock.json'));
+      fs.copySync(path.join(__dirname, 'recursive-ci/test-package.json'), path.join(newPath, 'package.json'));
+      fs.copySync(path.join(__dirname, 'recursive-ci/test-package-lock.json'), path.join(newPath, 'package-lock.json'));
     });
   });
 
@@ -203,10 +203,10 @@ describe('recursive ci', function () {
 
   describe('test with invalid lock file', function () {    
     it('fails to install packages', function (done) {
-      cwd = getTempDir(); //path.join(os.tmpdir(), 'recursive-ci'.concat(uuidv4()));
+      cwd = getTempDir();
       fs.ensureDirSync(cwd);
-      fs.copySync(path.join(__dirname, 'test-package-fail.json'), path.join(cwd, 'package.json'));
-      fs.copySync(path.join(__dirname, 'test-package-fail-lock.json'), path.join(cwd, 'package-lock.json'));
+      fs.copySync(path.join(__dirname, 'recursive-ci/test-package-fail.json'), path.join(cwd, 'package.json'));
+      fs.copySync(path.join(__dirname, 'recursive-ci/test-package-fail-lock.json'), path.join(cwd, 'package-lock.json'));
       this.timeout(10000); // update timeout in case npm ci takes time      
       try {        
         execSync(script, { cwd: cwd }); // Throw an error if exec fail
