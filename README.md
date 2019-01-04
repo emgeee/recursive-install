@@ -18,7 +18,7 @@ Usage
 `$ npm-recursive-install --production` - Will not install dev dependencies
 
 
-recursive-ci [![Build Status](https://github.com/ReinoutW/recursive-ci.svg?branch=master)](https://github.com/ReinoutW/recursive-ci)
+recursive-ci [![Build Status](https://travis-ci.org/ReinoutW/recursive-ci.svg?branch=master)](https://github.com/ReinoutW/recursive-ci)
 ===
 
 A small utility to recursively run `npm ci` in any child directory that have both a `package.json` as well as a `package-lock.json` file, excluding sub directories of `node_modules`.
