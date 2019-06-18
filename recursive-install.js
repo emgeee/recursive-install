@@ -26,7 +26,7 @@ function npmInstall (dir) {
       execSync('npm install --production', { cwd: dir})
     } else {
       console.log('Installing ' + dir + '/package.json')
-      execSync('npm install', { cwd: dir})
+      execSync('npm install -g', { cwd: dir})
     }
     console.log('')
   } catch (err) {
