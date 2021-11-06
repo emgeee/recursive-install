@@ -1,18 +1,21 @@
 var path = require('path')
 var assert = require('assert')
-var uuidv4 = require('uuid/v4')
+var uuidv4 = require('uuid').v4
 var fs = require('fs-extra')
 var os = require('os')
 var execSync = require('child_process').execSync
 
+var isWin = process.platform === "win32";
 
-var script = path.join(__dirname, '../recursive-install.js')
+var envCommand = (isWin && 'node ') || ''
+
+var script = envCommand + path.join(__dirname, '../recursive-install.js')
 
 describe('recursive install', function () {
   var cwd
   var installedPaths
   var notInstalledPaths
-  var result = {code: 0}
+  var result = { code: 0 }
 
   beforeEach(function () {
     installedPaths = [
@@ -199,7 +202,7 @@ describe('recursive install', function () {
       } catch (err) {
         assert(
           (err.status === 1),
-          'Exist status should be 1, not '+ err.status
+          'Exist status should be 1, not ' + err.status
         )
         done()
       }
